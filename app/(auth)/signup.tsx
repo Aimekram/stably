@@ -1,36 +1,45 @@
-import { Link, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Text, TextInput, View } from 'react-native';
 
 import { Button } from '~/components/Button';
-import { createEmailFromUsername } from '~/utils/createEmailFromUsername';
-import { supabase } from '~/utils/supabase';
 
-// dictionary
-const TAB_TITLE = 'Logowanie';
-const SIGN_IN_TEXT = 'Zaloguj się';
+// TODO: figure out the registration flow
+
+const TAB_TITLE = 'Utwórz hasło';
+const SIGN_UP_TEXT = 'Zapisz';
 const USERNAME_TEXT = 'Nazwa użytkownika';
 const USERNAME_PLACEHOLDER = 'Użytkownik123';
-const PASSWORD_TEXT = 'Hasło';
+const PASSWORD_TEXT = 'Nowe hasło';
 const PASSWORD_PLACEHOLDER = '••••••';
-const SIGNUP_LINK_TEXT = 'Utwórz hasło dla nowego użytkownika';
+const PASSWORD_2_TEXT = 'Powtórz hasło';
+const PASSWORD_2_PLACEHOLDER = '••••••';
+const SAME_PASSWORDS_ERROR = 'Hasła muszą być takie same';
 
 export default function Auth() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const fakeEmail = createEmailFromUsername(username);
+  //   const fakeEmail = createEmailFromUsername(username);
 
-  async function signInWithUsername() {
+  async function setPasswordWithUsername() {
+    if (password !== password2) {
+      Alert.alert(SAME_PASSWORDS_ERROR);
+      setPassword2('');
+      return;
+    }
+
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email: fakeEmail,
-      password,
-    });
-
-    if (error) Alert.alert(error.message);
-    setLoading(false);
+    try {
+      // check if user already exists
+      alert('Feature not implemented yet');
+    } catch (error) {
+      Alert.alert('Invalid username or user already registered');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -61,14 +70,24 @@ export default function Auth() {
           className="rounded-md border border-indigo-200 bg-white px-3 py-6"
         />
       </View>
+      <View className="relative">
+        <Text className="text-md absolute left-3 top-[-10px] z-10 bg-white px-2 font-semibold text-gray-600">
+          {PASSWORD_2_TEXT}
+        </Text>
+        <TextInput
+          onChangeText={(text) => setPassword2(text)}
+          value={password2}
+          secureTextEntry
+          placeholder={PASSWORD_2_PLACEHOLDER}
+          autoCapitalize="none"
+          className="rounded-md border border-indigo-200 bg-white px-3 py-6"
+        />
+      </View>
       <Button
-        title={SIGN_IN_TEXT}
-        disabled={loading || !username.length || !password.length}
-        onPress={() => signInWithUsername()}
+        title={SIGN_UP_TEXT}
+        disabled={loading || !username.length || !password.length || !password2.length}
+        onPress={() => setPasswordWithUsername()}
       />
-      <Link href="/signup" className="mx-auto px-4 py-2 text-gray-600">
-        <Text className="underline">{SIGNUP_LINK_TEXT}</Text>
-      </Link>
     </View>
   );
 }
