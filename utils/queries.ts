@@ -23,5 +23,21 @@ export const queries = {
         return data;
       },
     },
+    oneById: (profileId: string) => ({
+      queryKey: ['profiles', 'oneById', profileId],
+      queryFn: async (): Promise<Profile> => {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('id, username, role')
+          .eq('id', profileId)
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        return data;
+      },
+    }),
   },
 };
