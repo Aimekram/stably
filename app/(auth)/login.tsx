@@ -15,7 +15,7 @@ const PASSWORD_TEXT = 'Hasło';
 const PASSWORD_PLACEHOLDER = '••••••';
 const SIGNUP_LINK_TEXT = 'Utwórz hasło dla nowego użytkownika';
 
-export default function Auth() {
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);

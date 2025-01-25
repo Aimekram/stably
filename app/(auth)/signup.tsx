@@ -16,7 +16,7 @@ const PASSWORD_2_TEXT = 'Powtórz hasło';
 const PASSWORD_2_PLACEHOLDER = '••••••';
 const SAME_PASSWORDS_ERROR = 'Hasła muszą być takie same';
 
-export default function Auth() {
+export default function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
