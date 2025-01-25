@@ -2,12 +2,13 @@ import { Session } from '@supabase/supabase-js';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 
+import { Profile } from '~/utils/queries';
 import { supabase } from '~/utils/supabase';
 
 type AuthContextValue = {
   user: Session['user'] | null;
   isAuthenticated: boolean;
-  userRole: 'stable_owner' | 'stable_worker' | 'horse_owner' | null;
+  userRole: Profile['role'] | null;
   session: Session | null;
 };
 
