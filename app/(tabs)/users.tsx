@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
 import { AlertText } from '~/components/AlertText';
+import { Button } from '~/components/Button';
 import { queries } from '~/utils/queries';
 
 export default function Users() {
@@ -32,8 +33,15 @@ export default function Users() {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View className="border-b border-gray-200 p-4">
-              <Text className="text-lg font-semibold">{item.username}</Text>
-              <Text className="text-gray-600">{item.role}</Text>
+              <View className="flex-row items-center justify-between">
+                <View>
+                  <Text className="text-lg font-semibold">{item.username}</Text>
+                  <Text className="text-gray-600">{item.role}</Text>
+                </View>
+                <Link href={`/users/${item.id}`} asChild>
+                  <Button title="Edit" onPress={() => {}} />
+                </Link>
+              </View>
             </View>
           )}
         />
