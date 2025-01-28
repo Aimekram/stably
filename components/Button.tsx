@@ -23,7 +23,7 @@ export const Button = forwardRef<View, ButtonProps>(
 );
 
 const styles = {
-  button: 'items-center bg-indigo-500 rounded-md shadow-sm py-4 px-6',
+  button: 'items-center bg-green-800 rounded-md shadow-sm py-4 px-6',
   buttonDisabled: 'bg-gray-300',
   buttonText: 'text-white text-lg font-semibold text-center',
   buttonTextDisabled: 'text-gray-500',

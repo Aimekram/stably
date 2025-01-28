@@ -45,7 +45,7 @@ export default function Login() {
           value={username}
           placeholder={USERNAME_PLACEHOLDER}
           autoCapitalize="none"
-          className="rounded-md border border-indigo-200 bg-white px-3 py-6"
+          className="rounded-md border border-green-200 bg-white px-3 py-6"
         />
       </View>
       <View className="relative">
@@ -58,7 +58,7 @@ export default function Login() {
           secureTextEntry
           placeholder={PASSWORD_PLACEHOLDER}
           autoCapitalize="none"
-          className="rounded-md border border-indigo-200 bg-white px-3 py-6"
+          className="rounded-md border border-green-200 bg-white px-3 py-6"
         />
       </View>
       <Button
