@@ -7,10 +7,6 @@ import { queries } from '~/utils/queries';
 export default function Home() {
   const horsesRequest = useQuery(queries.horses.list);
 
-  console.log(horsesRequest.isLoading);
-  console.log(horsesRequest.isError);
-  console.log(horsesRequest.data);
-
   return (
     <>
       <Stack.Screen options={{ title: 'Home' }} />
