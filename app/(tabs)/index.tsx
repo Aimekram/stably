@@ -1,7 +1,16 @@
+import { useQuery } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { Text, View } from 'react-native';
 
+import { queries } from '~/utils/queries';
+
 export default function Home() {
+  const horsesRequest = useQuery(queries.horses.list);
+
+  console.log(horsesRequest.isLoading);
+  console.log(horsesRequest.isError);
+  console.log(horsesRequest.data);
+
   return (
     <>
       <Stack.Screen options={{ title: 'Home' }} />
@@ -11,6 +20,8 @@ export default function Home() {
       </View>
       <View className="my-4 px-2">
         <Text className="font-semi-bold text-lg">Horses</Text>
+        <Text>NAME: {horsesRequest.data?.[0]?.name}</Text>
+        <Text>OWNER: {horsesRequest.data?.[0]?.owner.username}</Text>
       </View>
     </>
   );
