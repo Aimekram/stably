@@ -4,13 +4,13 @@ export type Horse = {
   id: string;
   name: string;
   owner: {
-    username: string;
+    username: Profile['username'];
   };
 };
 
 export type Profile = {
   id: string;
-  username: string;
+  username: string | null;
   role: 'stable_owner' | 'stable_worker' | 'horse_owner';
 };
 
