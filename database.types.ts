@@ -7,6 +7,9 @@ export type Database = {
         Row: {
           created_at: string;
           id: string;
+          menu_breakfast: string;
+          menu_dinner: string;
+          menu_lunch: string;
           name: string;
           owner_id: string;
           updated_at: string;
@@ -14,6 +17,9 @@ export type Database = {
         Insert: {
           created_at?: string;
           id?: string;
+          menu_breakfast?: string;
+          menu_dinner?: string;
+          menu_lunch?: string;
           name?: string;
           owner_id: string;
           updated_at?: string;
@@ -21,6 +27,9 @@ export type Database = {
         Update: {
           created_at?: string;
           id?: string;
+          menu_breakfast?: string;
+          menu_dinner?: string;
+          menu_lunch?: string;
           name?: string;
           owner_id?: string;
           updated_at?: string;

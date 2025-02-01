@@ -10,11 +10,12 @@ export default function HorseDetails() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { user } = useAuth();
 
-  const [breakfast, setBreakfast] = useState('');
-  const [dinner, setDinner] = useState('');
-
   const horseRequest = useQuery(queries.horses.oneById(id));
   const isReadOnly = horseRequest.data?.owner.id !== user?.id;
+
+  // TODO: add loading readOnly loading state or setup rhf
+  const [breakfast, setBreakfast] = useState(horseRequest.data?.menu_breakfast ?? '');
+  const [dinner, setDinner] = useState('');
 
   if (horseRequest.isLoading) {
     return (

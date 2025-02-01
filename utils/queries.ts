@@ -3,11 +3,16 @@ import { supabase } from '~/utils/supabase';
 export type Horse = {
   id: string;
   name: string;
+  menu_breakfast: string;
+  menu_lunch: string;
+  menu_dinner: string;
   owner: {
     id: Profile['id'];
     username: Profile['username'];
   };
 };
+
+type HorsesList = Pick<Horse, 'id' | 'name' | 'owner'>[];
 
 export type Profile = {
   id: string;
@@ -19,7 +24,7 @@ export const queries = {
   horses: {
     list: {
       queryKey: ['horses', 'list'],
-      queryFn: async (): Promise<Horse[]> => {
+      queryFn: async (): Promise<HorsesList> => {
         const { data, error } = await supabase
           .from('horses')
           .select(
@@ -47,6 +52,9 @@ export const queries = {
             `
             id,
             name,
+            menu_breakfast,
+            menu_lunch,
+            menu_dinner,
             owner:profiles!horses_owner_id_fkey(id, username)
           `
           )
