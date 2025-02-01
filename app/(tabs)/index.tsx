@@ -27,7 +27,7 @@ export default function Home() {
                   <Pressable className="w-full flex-row items-center justify-between">
                     <View>
                       <Text className="text-lg font-semibold">{item.name}</Text>
-                      <Text className="text-gray-600">{item.owner.username}</Text>
+                      <Text className="text-gray-600">{item.owner.username ?? ''}</Text>
                     </View>
                     <FontAwesome size={16} name="chevron-right" />
                   </Pressable>
