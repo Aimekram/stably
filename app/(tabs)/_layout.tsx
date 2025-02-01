@@ -5,7 +5,9 @@ import { TabBarIcon } from '~/components/TabBarIcon';
 import { useAuth } from '~/contexts/AuthProvider';
 
 export default function TabLayout() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+
+  const isStableOwner = user?.role === 'stable_owner';
 
   if (!isAuthenticated) {
     return <Redirect href="/login" />;
@@ -30,6 +32,7 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="users"
+        redirect={!isStableOwner}
         options={{
           title: 'Users',
           tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
