@@ -5,9 +5,9 @@ import { TabBarIcon } from '~/components/TabBarIcon';
 import { useAuth } from '~/contexts/AuthProvider';
 
 export default function TabLayout() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, userRole } = useAuth();
 
-  const isStableOwner = user?.role === 'stable_owner';
+  const isStableOwner = userRole === 'stable_owner';
 
   if (!isAuthenticated) {
     return <Redirect href="/login" />;
