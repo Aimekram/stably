@@ -42,15 +42,15 @@ export type Database = {
           id: string;
           role: Database['public']['Enums']['user_role'];
           updated_at: string;
-          username: string;
+          username: string | null;
         };
         Insert: {
           avatar_url?: string | null;
           full_name?: string | null;
           id: string;
           role?: Database['public']['Enums']['user_role'];
-          updated_at: string;
-          username?: string;
+          updated_at?: string;
+          username?: string | null;
         };
         Update: {
           avatar_url?: string | null;
@@ -58,7 +58,7 @@ export type Database = {
           id?: string;
           role?: Database['public']['Enums']['user_role'];
           updated_at?: string;
-          username?: string;
+          username?: string | null;
         };
         Relationships: [];
       };
