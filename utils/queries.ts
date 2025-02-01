@@ -4,6 +4,7 @@ export type Horse = {
   id: string;
   name: string;
   owner: {
+    id: Profile['id'];
     username: Profile['username'];
   };
 };
@@ -25,7 +26,7 @@ export const queries = {
             `
             id,
             name,
-            owner:profiles!horses_owner_id_fkey(username)
+            owner:profiles!horses_owner_id_fkey(id, username)
           `
           )
           .order('name');
@@ -37,6 +38,28 @@ export const queries = {
         return data;
       },
     },
+    oneById: (horseId: string) => ({
+      queryKey: ['horses', 'oneById', horseId],
+      queryFn: async (): Promise<Horse> => {
+        const { data, error } = await supabase
+          .from('horses')
+          .select(
+            `
+            id,
+            name,
+            owner:profiles!horses_owner_id_fkey(id, username)
+          `
+          )
+          .eq('id', horseId)
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        return data;
+      },
+    }),
   },
   profiles: {
     list: {
