@@ -34,7 +34,7 @@ export const queries = {
           throw error;
         }
 
-        return data; // TODO: fix type
+        return data;
       },
     },
   },
