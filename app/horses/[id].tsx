@@ -1,10 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { View, Text, ActivityIndicator, TextInput } from 'react-native';
 
 import { useAuth } from '~/contexts/AuthProvider';
 import { queries } from '~/utils/queries';
+
+type HorseFormValues = {
+  menu_breakfast: string;
+  menu_lunch: string;
+  menu_dinner: string;
+};
 
 export default function HorseDetails() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -13,9 +19,13 @@ export default function HorseDetails() {
   const horseRequest = useQuery(queries.horses.oneById(id));
   const isReadOnly = horseRequest.data?.owner.id !== user?.id;
 
-  // TODO: add loading readOnly loading state or setup rhf
-  const [breakfast, setBreakfast] = useState(horseRequest.data?.menu_breakfast ?? '');
-  const [dinner, setDinner] = useState('');
+  const { register } = useForm<HorseFormValues>({
+    defaultValues: {
+      menu_breakfast: horseRequest.data?.menu_breakfast ?? '',
+      menu_lunch: horseRequest.data?.menu_lunch ?? '',
+      menu_dinner: horseRequest.data?.menu_dinner ?? '',
+    },
+  });
 
   if (horseRequest.isLoading) {
     return (
@@ -39,12 +49,25 @@ export default function HorseDetails() {
             Breakfast
           </Text>
           <TextInput
-            readOnly={isReadOnly}
+            {...register('menu_breakfast')}
+            editable={!isReadOnly}
             multiline
             numberOfLines={4}
-            value={breakfast}
-            onChangeText={setBreakfast}
-            placeholder="Add info about horse's breakfast..."
+            placeholder={isReadOnly ? 'No info provided' : "Add info about horse's breakfast..."}
+            textAlignVertical="top"
+            className="min-h-[80px] rounded-md border border-green-200 bg-white px-3 py-3"
+          />
+        </View>
+        <View className="relative">
+          <Text className="text-md absolute left-3 top-[-10px] z-10 bg-white px-2 font-semibold text-gray-600">
+            Lunch
+          </Text>
+          <TextInput
+            {...register('menu_lunch')}
+            editable={!isReadOnly}
+            multiline
+            numberOfLines={4}
+            placeholder={isReadOnly ? 'No info provided' : "Add info about horse's lunch..."}
             textAlignVertical="top"
             className="min-h-[80px] rounded-md border border-green-200 bg-white px-3 py-3"
           />
@@ -54,12 +77,11 @@ export default function HorseDetails() {
             Dinner
           </Text>
           <TextInput
-            readOnly={isReadOnly}
+            {...register('menu_dinner')}
+            editable={!isReadOnly}
             multiline
             numberOfLines={4}
-            value={dinner}
-            onChangeText={setDinner}
-            placeholder="Add info about horse's dinner..."
+            placeholder={isReadOnly ? 'No info provided' : "Add info about horse's dinner..."}
             textAlignVertical="top"
             className="min-h-[80px] rounded-md border border-green-200 bg-white px-3 py-3"
           />
