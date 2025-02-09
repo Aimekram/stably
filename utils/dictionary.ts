@@ -1,4 +1,5 @@
 export const TAB_TITLES = {
+  login: 'Logowanie',
   horses_new: 'Dodaj konia',
   profile: 'Twój profil',
 };
@@ -6,7 +7,15 @@ export const TAB_TITLES = {
 export const BTN_TEXTS = {
   save: 'Zapisz zmiany',
   save_short: 'Zapisz',
-  logout: 'Wyloguj',
+};
+
+export const AUTH_TEXTS = {
+  login: 'Zaloguj się',
+  logout: 'Wyloguj się',
+  username: 'Nazwa użytkownika',
+  username_error_required: 'Nazwa użytkownika jest wymagana',
+  username_error_minLength: 'Nazwa użytkownika musi mieć minimum 3 znaki',
+  username_placeholder: 'Wpisz nazwę użytkownika',
 };
 
 // horse

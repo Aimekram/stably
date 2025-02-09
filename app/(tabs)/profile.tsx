@@ -4,7 +4,7 @@ import { ActivityIndicator, Text, View } from 'react-native';
 import { AlertText } from '~/components/AlertText';
 import { Button } from '~/components/Button';
 import { useAuth } from '~/contexts/AuthProvider';
-import { BTN_TEXTS } from '~/utils/dictionary';
+import { AUTH_TEXTS } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';
 import { supabase } from '~/utils/supabase';
 
@@ -37,7 +37,7 @@ export default function Profile() {
       <Text>Twój email: {session.user.email}!</Text>
       <Text>Nazwa użytkownika: {username}</Text>
       <Text className="my-8">Rola: {role}</Text>
-      <Button title={BTN_TEXTS.logout} onPress={() => supabase.auth.signOut()} />
+      <Button title={AUTH_TEXTS.logout} onPress={() => supabase.auth.signOut()} />
     </View>
   );
 }

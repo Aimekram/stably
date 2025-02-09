@@ -4,11 +4,10 @@ import { Alert, Text, TextInput, View } from 'react-native';
 
 import { Button } from '~/components/Button';
 import { createEmailFromUsername } from '~/utils/createEmailFromUsername';
+import { AUTH_TEXTS, TAB_TITLES } from '~/utils/dictionary';
 import { supabase } from '~/utils/supabase';
 
 // dictionary
-const TAB_TITLE = 'Logowanie';
-const SIGN_IN_TEXT = 'Zaloguj się';
 const USERNAME_TEXT = 'Nazwa użytkownika';
 const USERNAME_PLACEHOLDER = 'Użytkownik123';
 const PASSWORD_TEXT = 'Hasło';
@@ -28,14 +27,18 @@ export default function Login() {
       email: fakeEmail,
       password,
     });
+    // TODO: cleanup all other queries
 
-    if (error) Alert.alert(error.message);
+    if (error) {
+      Alert.alert(error.message);
+    }
+
     setLoading(false);
   }
 
   return (
     <View className="flex-1 gap-6 bg-white p-5 pt-10">
-      <Stack.Screen options={{ title: TAB_TITLE }} />
+      <Stack.Screen options={{ title: TAB_TITLES.login }} />
       <View className="relative">
         <Text className="text-md absolute left-3 top-[-10px] z-10 bg-white px-2 font-semibold text-gray-600">
           {USERNAME_TEXT}
@@ -62,7 +65,7 @@ export default function Login() {
         />
       </View>
       <Button
-        title={SIGN_IN_TEXT}
+        title={AUTH_TEXTS.login}
         disabled={loading || !username.length || !password.length}
         onPress={() => signInWithUsername()}
       />
