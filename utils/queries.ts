@@ -90,6 +90,23 @@ export const queries = {
         return newHorse;
       },
     },
+    update: (horseId: Horse['id']) => ({
+      mutationFn: async (data: Pick<Horse, 'menu_breakfast' | 'menu_lunch' | 'menu_dinner'>) => {
+        const { data: updatedHorse, error } = await supabase
+          .from('horses')
+          .update(data)
+          .eq('id', horseId)
+          .select()
+          .single();
+
+        if (error) {
+          console.error('Update error:', error);
+          throw error;
+        }
+
+        return updatedHorse;
+      },
+    }),
   },
   profiles: {
     list: {

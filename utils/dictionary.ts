@@ -15,6 +15,9 @@ export const HORSE_MENU_TEXTS = {
   breakfast: 'Śniadanie',
   lunch: 'Obiad',
   dinner: 'Kolacja',
+  error: 'Wystąpił błąd podczas pobierania danych',
+  successful_update: 'Zmiany zapisane pomyślnie',
+  error_update: 'Wystąpił błąd podczas zapisywania zmian',
 };
 
 export const HORSE_NAME_TEXTS = {
