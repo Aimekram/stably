@@ -1,8 +1,9 @@
-import { Link, Redirect, Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 
-import { HeaderButton } from '~/components/HeaderButton';
+// import { HeaderButton } from '~/components/HeaderButton';
 import { TabBarIcon } from '~/components/TabBarIcon';
 import { useAuth } from '~/contexts/AuthProvider';
+import { TAB_TITLES } from '~/utils/dictionary';
 
 export default function TabLayout() {
   const { isAuthenticated, userRole } = useAuth();
@@ -23,11 +24,11 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <HeaderButton />
-            </Link>
-          ),
+          // headerRight: () => (
+          //   <Link href="/modal" asChild>
+          //     <HeaderButton />
+          //   </Link>
+          // ),
         }}
       />
       <Tabs.Screen
@@ -41,7 +42,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: TAB_TITLES.profile,
           tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
         }}
       />

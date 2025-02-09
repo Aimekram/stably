@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { Stack } from 'expo-router';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { AlertText } from '~/components/AlertText';
 import { Button } from '~/components/Button';
 import { useAuth } from '~/contexts/AuthProvider';
+import { BTN_TEXTS } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';
 import { supabase } from '~/utils/supabase';
 
@@ -20,12 +20,9 @@ export default function Profile() {
 
   if (profileRequest.isLoading) {
     return (
-      <>
-        <Stack.Screen options={{ title: 'Profile' }} />
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" />
-        </View>
-      </>
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" />
+      </View>
     );
   }
 
@@ -36,14 +33,11 @@ export default function Profile() {
   const { username, role } = profileRequest.data || {};
 
   return (
-    <>
-      <Stack.Screen options={{ title: 'Profile' }} />
-      <View className="flex-1 items-center gap-4">
-        <Text className="my-8">Hello, {session.user.email}!</Text>
-        <Text className="my-8">username: {username}</Text>
-        <Text className="my-8">role: {role}</Text>
-        <Button title="Sign out" onPress={() => supabase.auth.signOut()} />
-      </View>
-    </>
+    <View className="my-4 flex-1 items-center gap-3">
+      <Text>Twój email: {session.user.email}!</Text>
+      <Text>Nazwa użytkownika: {username}</Text>
+      <Text className="my-8">Rola: {role}</Text>
+      <Button title={BTN_TEXTS.logout} onPress={() => supabase.auth.signOut()} />
+    </View>
   );
 }
