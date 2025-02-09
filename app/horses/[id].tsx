@@ -73,7 +73,7 @@ const HorseMenuForm = ({ horseMenu, isReadOnly, horseId }: HorseMenuFormProps) =
     },
   });
 
-  const updateHorse = useMutation({
+  const updateHorseRequest = useMutation({
     ...queries.horses.update(horseId),
     onSuccess: () => {
       queryClient.invalidateQueries(queries.horses.oneById(horseId));
@@ -86,7 +86,7 @@ const HorseMenuForm = ({ horseMenu, isReadOnly, horseId }: HorseMenuFormProps) =
   });
 
   const onSubmit = handleSubmit((data) => {
-    updateHorse.mutate(data);
+    updateHorseRequest.mutate(data);
   });
 
   return (
@@ -159,7 +159,7 @@ const HorseMenuForm = ({ horseMenu, isReadOnly, horseId }: HorseMenuFormProps) =
           <Button
             title={BTN_TEXTS.save}
             onPress={onSubmit}
-            disabled={!isDirty || updateHorse.isPending}
+            disabled={!isDirty || updateHorseRequest.isPending}
           />
         </View>
       )}
