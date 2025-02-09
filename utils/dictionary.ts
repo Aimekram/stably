@@ -12,6 +12,11 @@ export const HORSE_NAME_TEXTS = {
   error_minLength: 'Nazwa musi mieć minimum 2 znaki',
 };
 
+export const HORSES_LIST_TEXTS = {
+  title: 'Lista koni:',
+  title_owner: 'Twoje konie:',
+};
+
 export const BTN_TEXTS = {
   save: 'Zapisz zmiany',
   save_short: 'Zapisz',
