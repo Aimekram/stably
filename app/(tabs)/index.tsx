@@ -26,7 +26,7 @@ export default function Home() {
         </View>
       )}
       <HorsesList />
-      <NewHorseBtn />
+      {isHorseOwner ? <NewHorseBtn /> : null}
     </>
   );
 }
