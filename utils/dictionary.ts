@@ -1,3 +1,15 @@
+export const TAB_TITLES = {
+  horses_new: 'Dodaj konia',
+  profile: 'Twój profil',
+};
+
+export const BTN_TEXTS = {
+  save: 'Zapisz zmiany',
+  save_short: 'Zapisz',
+  logout: 'Wyloguj',
+};
+
+// horse
 export const HORSE_MENU_TEXTS = {
   placeholder: 'Wpisz informacje o tym posiłku',
   breakfast: 'Śniadanie',
@@ -15,13 +27,4 @@ export const HORSE_NAME_TEXTS = {
 export const HORSES_LIST_TEXTS = {
   title: 'Lista koni:',
   title_owner: 'Twoje konie:',
-};
-
-export const BTN_TEXTS = {
-  save: 'Zapisz zmiany',
-  save_short: 'Zapisz',
-};
-
-export const TAB_TITLES = {
-  horses_new: 'Dodaj konia',
 };
