@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
       if (session?.user) {
         fetchProfile(session.user.id);
+        setIsSessionLoaded(true);
       }
     });
 
@@ -47,6 +48,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
       if (session?.user) {
         fetchProfile(session.user.id);
+        setIsSessionLoaded(true);
       }
     });
   }, []);
