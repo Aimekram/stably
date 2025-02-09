@@ -20,7 +20,7 @@ export type Database = {
           menu_breakfast?: string;
           menu_dinner?: string;
           menu_lunch?: string;
-          name?: string;
+          name: string;
           owner_id: string;
           updated_at?: string;
         };
@@ -30,7 +30,7 @@ export type Database = {
           menu_breakfast?: string;
           menu_dinner?: string;
           menu_lunch?: string;
-          name?: string;
+          name: string;
           owner_id?: string;
           updated_at?: string;
         };

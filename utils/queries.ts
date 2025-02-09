@@ -43,7 +43,7 @@ export const queries = {
         return data;
       },
     },
-    oneById: (horseId: string) => ({
+    oneById: (horseId: Horse['id']) => ({
       queryKey: ['horses', 'oneById', horseId],
       queryFn: async (): Promise<Horse> => {
         const { data, error } = await supabase
@@ -68,6 +68,28 @@ export const queries = {
         return data;
       },
     }),
+    create: {
+      mutationFn: async (data: {
+        name: string;
+        menu_breakfast: string;
+        menu_lunch: string;
+        menu_dinner: string;
+        owner_id: string;
+      }) => {
+        const { data: newHorse, error } = await supabase
+          .from('horses')
+          .insert(data)
+          .select()
+          .single();
+
+        if (error) {
+          console.error('Create error:', error);
+          throw error;
+        }
+
+        return newHorse;
+      },
+    },
   },
   profiles: {
     list: {
