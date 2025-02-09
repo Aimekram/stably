@@ -1,3 +1,5 @@
+import { generateInviteCode } from './generateInviteCode';
+
 import { supabase } from '~/utils/supabase';
 
 export type Horse = {
@@ -140,5 +142,34 @@ export const queries = {
         return data;
       },
     }),
+  },
+  invites: {
+    create: {
+      mutationFn: async (username: string) => {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        if (!session) {
+          throw new Error('User is not authenticated');
+        }
+
+        const { data: invite, error } = await supabase
+          .from('invites')
+          .insert({
+            username,
+            code: generateInviteCode(),
+            created_by: session.user.id,
+          })
+          .select()
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        return invite;
+      },
+    },
   },
 };

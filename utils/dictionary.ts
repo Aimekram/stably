@@ -1,12 +1,16 @@
+import { USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from '~/app/users/new';
+
 export const TAB_TITLES = {
   login: 'Logowanie',
   horses_new: 'Dodaj konia',
   profile: 'Twój profil',
+  users_new: 'Dodaj użytkownika',
 };
 
 export const BTN_TEXTS = {
   save: 'Zapisz zmiany',
   save_short: 'Zapisz',
+  back: 'Wróć',
 };
 
 export const AUTH_TEXTS = {
@@ -14,8 +18,10 @@ export const AUTH_TEXTS = {
   logout: 'Wyloguj się',
   username: 'Nazwa użytkownika',
   username_error_required: 'Nazwa użytkownika jest wymagana',
-  username_error_minLength: 'Nazwa użytkownika musi mieć minimum 3 znaki',
+  username_error_minLength: `Nazwa użytkownika musi mieć minimum ${USERNAME_MIN_LENGTH} znaki`,
+  username_error_maxLength: `Nazwa użytkownika może mieć maksymalnie ${USERNAME_MAX_LENGTH} znaków`,
   username_placeholder: 'Wpisz nazwę użytkownika',
+  invite_create_btn: 'Wygeneruj zaproszenie',
 };
 
 // horse

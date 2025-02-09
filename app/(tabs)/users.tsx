@@ -1,6 +1,7 @@
+import { FontAwesome } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
 import { Link, Stack } from 'expo-router';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
 
 import { AlertText } from '~/components/AlertText';
 import { Button } from '~/components/Button';
@@ -45,7 +46,18 @@ export default function Users() {
             </View>
           )}
         />
+        <NewProfileBtn />
       </View>
     </>
   );
 }
+
+const NewProfileBtn = () => (
+  <View style={{ position: 'absolute', bottom: 20, right: 20 }}>
+    <Link href="/users/new" asChild>
+      <Pressable className="rounded-full bg-green-800 px-5 py-4">
+        <FontAwesome size={20} name="plus" color="white" />
+      </Pressable>
+    </Link>
+  </View>
+);

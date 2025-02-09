@@ -44,6 +44,41 @@ export type Database = {
           },
         ];
       };
+      invites: {
+        Row: {
+          claimed_at: string | null;
+          code: string;
+          created_at: string | null;
+          created_by: string;
+          id: string;
+          username: string;
+        };
+        Insert: {
+          claimed_at?: string | null;
+          code: string;
+          created_at?: string | null;
+          created_by: string;
+          id?: string;
+          username: string;
+        };
+        Update: {
+          claimed_at?: string | null;
+          code?: string;
+          created_at?: string | null;
+          created_by?: string;
+          id?: string;
+          username?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'invites_created_by_fkey';
+            columns: ['created_by'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       profiles: {
         Row: {
           avatar_url: string | null;
