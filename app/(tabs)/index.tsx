@@ -26,20 +26,9 @@ export default function Home() {
         </View>
       )}
       <HorsesList />
-      {isHorseOwner ? <NewHorseBtn /> : null}
     </>
   );
 }
-
-const NewHorseBtn = () => (
-  <View style={{ position: 'absolute', bottom: 20, right: 20 }}>
-    <Link href="/horses/new" asChild>
-      <Pressable className="rounded-full bg-green-800 px-5 py-4">
-        <FontAwesome size={20} name="plus" color="white" />
-      </Pressable>
-    </Link>
-  </View>
-);
 
 const HorsesList = () => {
   const { userRole } = useAuth();

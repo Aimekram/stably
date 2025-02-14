@@ -1,17 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'expo-router';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { AlertText } from '~/components/AlertText';
 import { Button } from '~/components/Button';
 import { useAuth } from '~/contexts/AuthProvider';
-import { AUTH_TEXTS } from '~/utils/dictionary';
+import { AUTH_TEXTS, BTN_TEXTS } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';
 import { supabase } from '~/utils/supabase';
 
 const ERROR_MESSAGE = 'An error occurred while fetching profile data';
 
 export default function Profile() {
-  const { session } = useAuth();
+  const { session, userRole } = useAuth();
+  const isHorseOwner = userRole === 'horse_owner';
 
   const profileRequest = useQuery({
     ...queries.profiles.oneById(String(session?.user.id)),
@@ -37,7 +39,20 @@ export default function Profile() {
       <Text>Twój email: {session.user.email}!</Text>
       <Text>Nazwa użytkownika: {username}</Text>
       <Text className="my-8">Rola: {role}</Text>
-      <Button title={AUTH_TEXTS.logout} onPress={() => supabase.auth.signOut()} />
+      {isHorseOwner ? <NewHorseBtn /> : null}
+      <Button
+        title={AUTH_TEXTS.logout}
+        onPress={() => supabase.auth.signOut()}
+        className="mt-auto"
+      />
     </View>
   );
 }
+
+const NewHorseBtn = () => (
+  <View style={{}}>
+    <Link href="/horses/new" asChild>
+      <Button title={BTN_TEXTS.new_horse} onPress={() => {}} />
+    </Link>
+  </View>
+);

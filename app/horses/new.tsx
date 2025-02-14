@@ -43,7 +43,7 @@ export default function NewHorse() {
 
   return (
     <View className="flex-1">
-      <Stack.Screen options={{ title: TAB_TITLES.horses_new, headerBackTitle: 'Home' }} />
+      <Stack.Screen options={{ title: TAB_TITLES.horses_new, headerBackTitle: BTN_TEXTS.back }} />
       <View className="flex-column my-4 gap-4 bg-white p-2 pt-4">
         <View className="relative mb-8">
           <Text className="text-md absolute left-3 top-[-10px] z-10 bg-white px-2 font-semibold text-gray-600">

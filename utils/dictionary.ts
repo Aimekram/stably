@@ -11,6 +11,7 @@ export const BTN_TEXTS = {
   save: 'Zapisz zmiany',
   save_short: 'Zapisz',
   back: 'Wróć',
+  new_horse: 'Dodaj konia',
 };
 
 export const AUTH_TEXTS = {
@@ -36,7 +37,7 @@ export const HORSE_MENU_TEXTS = {
 };
 
 export const HORSE_NAME_TEXTS = {
-  placeholder: 'Wpisz nazwę konia',
+  placeholder: 'Wpisz imię konia',
   label: 'Imię konia',
   error_required: 'Imię konia jest wymagane',
   error_minLength: 'Imię musi mieć minimum 2 znaki',
