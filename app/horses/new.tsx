@@ -3,7 +3,7 @@ import { Stack, useRouter } from 'expo-router';
 import { Controller, useForm } from 'react-hook-form';
 import { Text, TextInput, View } from 'react-native';
 
-import { Button } from '~/components/Button';
+import { Button } from '~/components/core/Button';
 import { useAuth } from '~/contexts/AuthProvider';
 import { BTN_TEXTS, HORSE_MENU_TEXTS, HORSE_NAME_TEXTS, TAB_TITLES } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';

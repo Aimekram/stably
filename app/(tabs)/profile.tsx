@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'expo-router';
 import { ActivityIndicator, Text, View } from 'react-native';
 
-import { AlertText } from '~/components/AlertText';
-import { Button } from '~/components/Button';
+import { AlertText } from '~/components/core/AlertText';
+import { Button } from '~/components/core/Button';
 import { useAuth } from '~/contexts/AuthProvider';
 import { AUTH_TEXTS, BTN_TEXTS } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';

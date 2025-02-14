@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Text, TextInput, View } from 'react-native';
 
-import { Button } from '~/components/Button';
+import { Button } from '~/components/core/Button';
 
 // TODO: figure out the registration flow
 

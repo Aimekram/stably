@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Text, TextInput, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { Button } from '~/components/Button';
+import { Button } from '~/components/core/Button';
 import { useAuth } from '~/contexts/AuthProvider';
 import { AUTH_TEXTS, BTN_TEXTS, TAB_TITLES } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';

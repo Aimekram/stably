@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { Link, Stack } from 'expo-router';
 import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
 
-import { AlertText } from '~/components/AlertText';
-import { Button } from '~/components/Button';
+import { AlertText } from '~/components/core/AlertText';
+import { Button } from '~/components/core/Button';
 import { queries } from '~/utils/queries';
 
 export default function Users() {

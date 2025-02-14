@@ -2,7 +2,7 @@ import { Link, Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Text, TextInput, View } from 'react-native';
 
-import { Button } from '~/components/Button';
+import { Button } from '~/components/core/Button';
 import { createEmailFromUsername } from '~/utils/createEmailFromUsername';
 import { AUTH_TEXTS, TAB_TITLES } from '~/utils/dictionary';
 import { supabase } from '~/utils/supabase';
