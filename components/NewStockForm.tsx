@@ -1,5 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { Pressable, Text, TextInput, View } from 'react-native';
 import Toast from 'react-native-toast-message';
@@ -21,7 +21,7 @@ type StockFormProps = {
 };
 
 export const NewStockForm = ({ horseId }: StockFormProps) => {
-  //   const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const { control, handleSubmit, reset, watch } = useForm<StockFormValues>({
     defaultValues: {
@@ -36,7 +36,7 @@ export const NewStockForm = ({ horseId }: StockFormProps) => {
   const createStockRequest = useMutation({
     ...queries.stock.create,
     onSuccess: () => {
-      //   queryClient.invalidateQueries(['stock', horseId]);
+      queryClient.invalidateQueries({ queryKey: ['stock'] });
       Toast.show({
         type: 'success',
         text1: STOCK_TEXTS.add_delivery_success,

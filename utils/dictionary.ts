@@ -59,8 +59,12 @@ export const STOCK_TEXTS = {
   type: 'Rodzaj',
   add_delivery_success: 'Stan magazynowy zmieniony pomyślnie',
   types: {
-    fodder: 'pasza',
-    supplement: 'suplement',
+    fodder: 'Pasza',
+    supplement: 'Suplement',
+  },
+  types_list_titles: {
+    fodder: 'Pasze',
+    supplement: 'Suplementy',
   },
   errors: {
     name_required: 'Nazwa paszy jest wymagana',

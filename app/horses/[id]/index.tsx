@@ -3,6 +3,7 @@ import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { HorseMenuForm } from '~/components/HorseMenuForm';
+import { StockReadOnly } from '~/components/StockReadOnly';
 import { Button } from '~/components/core/Button';
 import { useAuth } from '~/contexts/AuthProvider';
 import { BTN_TEXTS, HORSE_MENU_TEXTS } from '~/utils/dictionary';
@@ -44,9 +45,12 @@ export default function HorseDetails() {
         <Text className="my-4 px-2">owner: {horseRequest.data.owner.username}</Text>
       ) : null}
       <HorseMenuForm horseMenu={horseRequest.data} isReadOnly={isReadOnly} horseId={horseId} />
-      <Link href={`/horses/${horseId}/stock`} asChild>
-        <Button title="Stock details" onPress={() => {}} />
-      </Link>
+      <StockReadOnly horseId={horseId} />
+      <View className="m-2">
+        <Link href={`/horses/${horseId}/stock`} asChild>
+          <Button title="Stock details" onPress={() => {}} />
+        </Link>
+      </View>
     </View>
   );
 }

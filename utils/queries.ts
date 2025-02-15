@@ -22,10 +22,8 @@ export type Profile = {
   role: 'stable_owner' | 'stable_worker' | 'horse_owner';
 };
 
-type Stock = {
+export type Stock = {
   id: string;
-  horse_id: string;
-  owner_id: string;
   food_name: string;
   quantity: number;
   type: 'fodder' | 'supplement';
@@ -183,7 +181,7 @@ export const queries = {
   },
   stock: {
     create: {
-      mutationFn: async (data: Omit<Stock, 'id' | 'owner_id'>) => {
+      mutationFn: async (data: Omit<Stock, 'id'> & { horse_id: string }) => {
         const {
           data: { session },
         } = await supabase.auth.getSession();
@@ -211,5 +209,22 @@ export const queries = {
         return stock;
       },
     },
+    listByHorseId: (horseId: Horse['id']) => ({
+      queryKey: ['stock', 'listByHorseId', horseId],
+      queryFn: async (): Promise<Stock[]> => {
+        const { data, error } = await supabase
+          .from('stock')
+          .select('id, food_name, quantity, type')
+          .eq('horse_id', horseId)
+          .order('type', { ascending: false }) // fodder first (f before s)
+          .order('food_name');
+
+        if (error) {
+          throw error;
+        }
+
+        return data;
+      },
+    }),
   },
 };
