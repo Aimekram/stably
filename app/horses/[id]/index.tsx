@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Link, Stack, useLocalSearchParams } from 'expo-router';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { HorseMenuForm } from '~/components/HorseMenuForm';
+import { Button } from '~/components/core/Button';
 import { useAuth } from '~/contexts/AuthProvider';
-import { HORSE_MENU_TEXTS } from '~/utils/dictionary';
+import { BTN_TEXTS, HORSE_MENU_TEXTS } from '~/utils/dictionary';
 import { queries } from '~/utils/queries';
 
 export default function HorseDetails() {
@@ -36,11 +37,16 @@ export default function HorseDetails() {
 
   return (
     <View className="flex-1">
-      <Stack.Screen options={{ title: horseRequest.data.name ?? '' }} />
+      <Stack.Screen
+        options={{ title: horseRequest.data.name ?? '', headerBackTitle: BTN_TEXTS.back }}
+      />
       {isReadOnly ? (
         <Text className="my-4 px-2">owner: {horseRequest.data.owner.username}</Text>
       ) : null}
       <HorseMenuForm horseMenu={horseRequest.data} isReadOnly={isReadOnly} horseId={horseId} />
+      <Link href={`/horses/${horseId}/stock`} asChild>
+        <Button title="Stock details" onPress={() => {}} />
+      </Link>
     </View>
   );
 }

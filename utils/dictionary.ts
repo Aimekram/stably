@@ -14,6 +14,7 @@ export const BTN_TEXTS = {
   new_horse: 'Dodaj konia',
 };
 
+// auth
 export const AUTH_TEXTS = {
   login: 'Zaloguj się',
   logout: 'Wyloguj się',
@@ -46,4 +47,26 @@ export const HORSE_NAME_TEXTS = {
 export const HORSES_LIST_TEXTS = {
   title: 'Lista koni:',
   title_owner: 'Twoje konie:',
+};
+
+// stock
+export const STOCK_TEXTS = {
+  form_title: 'Dodaj nową paszę / suplement',
+  food_name: 'Nazwa',
+  food_name_placeholder: 'Wpisz nazwę paszy lub suplementu',
+  quantity_fodder: 'Liczba worków paszy',
+  quantity_supplement: 'Liczba opakowań suplementu',
+  type: 'Rodzaj',
+  add_delivery_success: 'Stan magazynowy zmieniony pomyślnie',
+  types: {
+    fodder: 'pasza',
+    supplement: 'suplement',
+  },
+  errors: {
+    name_required: 'Nazwa paszy jest wymagana',
+    name_length: 'Nazwa musi mieć od 2 do 50 znaków',
+    quantity_required: 'Ilość jest wymagana',
+    quantity_positive: 'Ilość musi być większa od 0',
+    type_required: 'Rodzaj jest wymagany',
+  },
 };

@@ -22,6 +22,15 @@ export type Profile = {
   role: 'stable_owner' | 'stable_worker' | 'horse_owner';
 };
 
+type Stock = {
+  id: string;
+  horse_id: string;
+  owner_id: string;
+  food_name: string;
+  quantity: number;
+  type: 'fodder' | 'supplement';
+};
+
 export const queries = {
   horses: {
     list: {
@@ -169,6 +178,37 @@ export const queries = {
         }
 
         return invite;
+      },
+    },
+  },
+  stock: {
+    create: {
+      mutationFn: async (data: Omit<Stock, 'id' | 'owner_id'>) => {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        if (!session) {
+          throw new Error('User is not authenticated');
+        }
+
+        const { data: stock, error } = await supabase
+          .from('stock')
+          .insert({
+            horse_id: data.horse_id,
+            food_name: data.food_name,
+            quantity: data.quantity,
+            type: data.type,
+            owner_id: session.user.id,
+          })
+          .select()
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        return stock;
       },
     },
   },

@@ -106,6 +106,47 @@ export type Database = {
         };
         Relationships: [];
       };
+      stock: {
+        Row: {
+          created_at: string | null;
+          delivered_at: string | null;
+          food_name: string;
+          horse_id: string;
+          id: string;
+          owner_id: string;
+          quantity: number;
+          type: Database['public']['Enums']['food_type'];
+        };
+        Insert: {
+          created_at?: string | null;
+          delivered_at?: string | null;
+          food_name: string;
+          horse_id: string;
+          id?: string;
+          owner_id: string;
+          quantity: number;
+          type?: Database['public']['Enums']['food_type'];
+        };
+        Update: {
+          created_at?: string | null;
+          delivered_at?: string | null;
+          food_name?: string;
+          horse_id?: string;
+          id?: string;
+          owner_id?: string;
+          quantity?: number;
+          type?: Database['public']['Enums']['food_type'];
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'stock_horse_id_fkey';
+            columns: ['horse_id'];
+            isOneToOne: false;
+            referencedRelation: 'horses';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -114,6 +155,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
+      food_type: 'fodder' | 'supplement';
       user_role: 'stable_owner' | 'stable_worker' | 'horse_owner';
     };
     CompositeTypes: {
