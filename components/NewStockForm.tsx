@@ -39,14 +39,14 @@ export const NewStockForm = ({ horseId }: StockFormProps) => {
       queryClient.invalidateQueries({ queryKey: ['stock'] });
       Toast.show({
         type: 'success',
-        text1: STOCK_TEXTS.add_delivery_success,
+        text1: STOCK_TEXTS.update_success,
       });
       reset();
     },
-    onError: (error) => {
+    onError: () => {
       Toast.show({
         type: 'error',
-        text1: error.message,
+        text1: STOCK_TEXTS.update_error,
       });
     },
   });
@@ -59,7 +59,7 @@ export const NewStockForm = ({ horseId }: StockFormProps) => {
   });
 
   return (
-    <View className="flex-column my-4 gap-6 bg-white p-4">
+    <View className="flex-column my-4 gap-6 bg-white px-4 py-6">
       <Text className="mb-2 text-lg font-bold">{STOCK_TEXTS.form_title}</Text>
       <View className="relative">
         <Text className="text-md absolute left-3 top-[-10px] z-10 bg-white px-2 font-semibold text-gray-600">
@@ -120,10 +120,7 @@ export const NewStockForm = ({ horseId }: StockFormProps) => {
         name="quantity"
         rules={{
           required: STOCK_TEXTS.errors.quantity_required,
-          min: {
-            value: 0.01,
-            message: STOCK_TEXTS.errors.quantity_positive,
-          },
+          min: { value: 0, message: STOCK_TEXTS.errors.quantity_negative },
         }}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <NumericInput

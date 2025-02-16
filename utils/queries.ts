@@ -226,5 +226,21 @@ export const queries = {
         return data;
       },
     }),
+    update: {
+      mutationFn: async ({ id, quantity }: Pick<Stock, 'id' | 'quantity'>) => {
+        const { data, error } = await supabase
+          .from('stock')
+          .update({ quantity })
+          .eq('id', id)
+          .select()
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        return data;
+      },
+    },
   },
 };

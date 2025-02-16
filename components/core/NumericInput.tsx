@@ -5,7 +5,7 @@ type NumericInputProps = {
   value: number;
   onChange: (value: number) => void;
   error?: { message?: string };
-  label: string;
+  label?: string;
   step?: number;
 };
 
@@ -15,7 +15,7 @@ export const NumericInput = ({ value, onChange, error, label, step = 1 }: Numeri
 
   return (
     <View>
-      <Text className="text-md mb-2 font-semibold text-gray-600">{label}</Text>
+      {label ? <Text className="text-md mb-2 font-semibold text-gray-600">{label}</Text> : null}
       <View
         className={`${error ? 'border-red-500' : 'border-green-200'} flex-row items-center self-start rounded-md border`}>
         <Pressable onPress={decrement} className="rounded-l-md  bg-green-50 p-4">

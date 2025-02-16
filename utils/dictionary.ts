@@ -57,7 +57,8 @@ export const STOCK_TEXTS = {
   quantity_fodder: 'Liczba worków paszy',
   quantity_supplement: 'Liczba opakowań suplementu',
   type: 'Rodzaj',
-  add_delivery_success: 'Stan magazynowy zmieniony pomyślnie',
+  update_success: 'Stan magazynowy zmieniony pomyślnie',
+  update_error: 'Wystąpił błąd podczas zmiany stanu magazynowego. Spróbuj ponownie',
   types: {
     fodder: 'Pasza',
     supplement: 'Suplement',
@@ -70,7 +71,7 @@ export const STOCK_TEXTS = {
     name_required: 'Nazwa paszy jest wymagana',
     name_length: 'Nazwa musi mieć od 2 do 50 znaków',
     quantity_required: 'Ilość jest wymagana',
-    quantity_positive: 'Ilość musi być większa od 0',
+    quantity_negative: 'Ilość nie może być ujemna',
     type_required: 'Rodzaj jest wymagany',
   },
 };
